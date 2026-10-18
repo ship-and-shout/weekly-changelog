@@ -1,5 +1,5 @@
 name: Weekly Changelog by Ship & Shout
-description: Keep CHANGELOG.md current with a weekly PR of last week's Added / Fixed / Improved, built from your real commits, PRs and releases.
+description: Keep CHANGELOG.md current: a weekly PR with last week's Added / Fixed / Improved, from your commits, PRs and releases.
 author: Ship & Shout
 branding:
   icon: book-open
