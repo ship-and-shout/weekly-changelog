@@ -1,0 +1,78 @@
+[
+  {
+    "input": {
+      "weekStart": "2026-09-19",
+      "items": [
+        {
+          "title": "add CSV export",
+          "type": "feat"
+        },
+        {
+          "title": "handle empty payloads",
+          "type": "fix"
+        },
+        {
+          "title": "faster dashboard queries",
+          "type": "perf"
+        },
+        {
+          "title": "Team invites",
+          "type": "feat"
+        }
+      ],
+      "releases": [
+        "v1.4.0"
+      ]
+    },
+    "expected": "## Week of Sep 19–25, 2026\n\nReleased: v1.4.0\n\n### Added\n- Add CSV export\n- Team invites\n\n### Fixed\n- Handle empty payloads\n\n### Improved\n- Faster dashboard queries\n"
+  },
+  {
+    "input": {
+      "weekStart": "2026-12-26",
+      "items": [
+        {
+          "title": "Dark mode"
+        }
+      ]
+    },
+    "expected": "## Week of Dec 26 – Jan 1, 2027\n\n### Added\n- Dark mode\n"
+  },
+  {
+    "input": {
+      "weekStart": "2026-09-19",
+      "items": []
+    },
+    "expected": "## Week of Sep 19–25, 2026\n\n- No user-facing changes this week.\n"
+  },
+  {
+    "input": {
+      "weekStart": "2026-09-26",
+      "items": [],
+      "releases": [
+        "v2.0.0",
+        "v2.0.1"
+      ]
+    },
+    "expected": "## Week of Sep 26 – Oct 2, 2026\n\nReleased: v2.0.0, v2.0.1\n\n- No user-facing changes this week.\n"
+  },
+  {
+    "input": {
+      "weekStart": "2026-02-28",
+      "items": [
+        {
+          "title": "  multi\nline  title ",
+          "type": "fix"
+        },
+        {
+          "title": "  ",
+          "type": "fix"
+        },
+        {
+          "title": "ünïcode – dash",
+          "type": "feat"
+        }
+      ]
+    },
+    "expected": "## Week of Feb 28 – Mar 6, 2026\n\n### Added\n- Ünïcode – dash\n\n### Fixed\n- Multi line title\n"
+  }
+]
