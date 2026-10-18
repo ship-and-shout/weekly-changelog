@@ -37536,7 +37536,8 @@ async function readWeek(octokit, r, base, w) {
             capped = true;
     }
     const { data: rel } = await octokit.rest.repos.listReleases({ ...r, per_page: 50 });
-    const releases = rel.filter((x) => !x.draft && inRange(x.published_at, w)).map((x) => x.tag_name);
+    // Stable releases only: canaries and betas would drown the entry.
+    const releases = rel.filter((x) => !x.draft && !x.prerelease && inRange(x.published_at, w)).map((x) => x.tag_name);
     return { commitMessages, prTitles, releases, capped };
 }
 function github_status(err) {
@@ -37680,7 +37681,7 @@ async function run(octokit, i) {
             fileSha: file?.sha,
             message,
             title: message,
-            body: `Adds last week's entry to \`${i.path}\`, built from merged PRs, conventional commits and releases between ${i.week.start} and ${i.week.end} (UTC).\n\n${entry}${cappedNote}\n\n${footer(i.repo, i.isPrivate)}`,
+            body: `Adds the week of ${i.week.label} to \`${i.path}\`, built from merged PRs, conventional commits and releases between ${i.week.start} and ${i.week.end} (UTC).\n\n${entry}${cappedNote}\n\n${footer(i.repo, i.isPrivate)}`,
         })
         : await commitDirect(octokit, i.repo, { base: i.base, path: i.path, content, fileSha: file?.sha, message });
     return { entry, empty, note: write.kind === "pr" ? `Opened ${write.url}` : `Committed ${write.url}`, write };

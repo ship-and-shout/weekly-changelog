@@ -66,7 +66,7 @@ export async function run(octokit: Octokit, i: RunInput): Promise<RunOutput> {
           fileSha: file?.sha,
           message,
           title: message,
-          body: `Adds last week's entry to \`${i.path}\`, built from merged PRs, conventional commits and releases between ${i.week.start} and ${i.week.end} (UTC).\n\n${entry}${cappedNote}\n\n${footer(i.repo, i.isPrivate)}`,
+          body: `Adds the week of ${i.week.label} to \`${i.path}\`, built from merged PRs, conventional commits and releases between ${i.week.start} and ${i.week.end} (UTC).\n\n${entry}${cappedNote}\n\n${footer(i.repo, i.isPrivate)}`,
         })
       : await commitDirect(octokit, i.repo, { base: i.base, path: i.path, content, fileSha: file?.sha, message });
   return { entry, empty, note: write.kind === "pr" ? `Opened ${write.url}` : `Committed ${write.url}`, write };
