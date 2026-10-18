@@ -1,0 +1,37 @@
+name: Weekly Changelog by Ship & Shout
+description: Keep CHANGELOG.md current with a weekly PR of last week's Added / Fixed / Improved, built from your real commits, PRs and releases.
+author: Ship & Shout
+branding:
+  icon: book-open
+  color: green
+inputs:
+  mode:
+    description: "pr (default) opens a PR, commit pushes to the base branch, none only sets outputs and the job summary."
+    default: pr
+  changelog-path:
+    description: File to update. Created with a short header if missing.
+    default: CHANGELOG.md
+  base-branch:
+    description: Branch to read commits from and target. Defaults to the repo's default branch.
+    default: ""
+  skip-empty:
+    description: "Skip weeks with no user-facing changes (no PR). Set false to write 'No user-facing changes this week.'"
+    default: "true"
+  week:
+    description: Any YYYY-MM-DD inside the week to write (Sat–Fri, UTC). Defaults to the last completed week. For backfills.
+    default: ""
+  token:
+    description: Token for the GitHub API. The default job token works; pass a PAT if you need CI to run on the opened PR.
+    default: ${{ github.token }}
+outputs:
+  entry:
+    description: The week's Markdown entry.
+  week-start:
+    description: First day of the week (Saturday), YYYY-MM-DD.
+  empty:
+    description: "'true' when nothing user-facing shipped that week."
+  pr-url:
+    description: URL of the opened PR (mode pr only).
+runs:
+  using: node24
+  main: dist/index.js
